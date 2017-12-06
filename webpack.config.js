@@ -2,6 +2,8 @@
  *  created by ling on 2017-12-6 15:10.
  */
 var path = require('path');
+const webpack = require('webpack');
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // Create multiple instances
 const extractCSS = new ExtractTextPlugin('css/[name]-one.css');
@@ -43,7 +45,20 @@ module.exports = {
     plugins: [
         extractCSS,
         extractLESS,
-        extractSCSS
+        extractSCSS,
+        new webpack.optimize.UglifyJsPlugin({
+            output: {
+                comments: false,  // remove all comments
+            },
+            compress: {
+                warnings: false
+            }
+        }),
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            }
+        })
     ]
 };
 
