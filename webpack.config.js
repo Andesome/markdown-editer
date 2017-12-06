@@ -11,7 +11,10 @@ const extractLESS = new ExtractTextPlugin('css/[name]-two.css');
 const extractSCSS = new ExtractTextPlugin('css/[name]-three.css');
 
 module.exports = {
-    entry: path.resolve(__dirname, './src/script/index.js'),
+    entry: {
+        home:'./src/script/index.js',
+        react: ['react']
+    },
     output: {
         path: path.resolve(__dirname, './build'),
         filename: 'js/bundle.js',
@@ -46,6 +49,16 @@ module.exports = {
         extractCSS,
         extractLESS,
         extractSCSS,
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "react",
+            // ( 公共chunk(commnons chunk) 的名称)
+
+            filename: "js/react[hash].js",
+            // ( 公共chunk 的文件名)
+
+            minChunks: Infinity,
+            // (模块必须被3个 入口chunk 共享)
+        }),
         new webpack.optimize.UglifyJsPlugin({
             output: {
                 comments: false,  // remove all comments
