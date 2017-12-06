@@ -1,0 +1,16 @@
+{
+  "name": "markdown-editer",
+  "version": "1.0.0",
+  "description": "react markdown editer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "markdown",
+    "js"
+  ],
+  "author": "lyin",
+  "license": "MIT"
+}
