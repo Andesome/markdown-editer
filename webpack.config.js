@@ -5,6 +5,7 @@ var path = require('path');
 const webpack = require('webpack');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 // Create multiple instances
 const extractCSS = new ExtractTextPlugin('css/[name]-one.css');
 const extractLESS = new ExtractTextPlugin('css/[name]-two.css');
@@ -17,7 +18,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, './build'),
-        filename: 'js/bundle.js',
+        filename: 'js/bundle[hash].js',
     },
     module: {
         rules: [{
@@ -71,6 +72,14 @@ module.exports = {
             "process.env": {
                 NODE_ENV: JSON.stringify("production")
             }
+        }),
+        new HtmlWebpackPlugin({
+            title:"Markdown Editer",
+            filename:"index.html",
+            template:"./src/template/box.html",
+            hash:false,
+            cache:true,
+            minify:false
         })
     ]
 };
