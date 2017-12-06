@@ -1,0 +1,33 @@
+/*-- created by ling on 2017-12-6 15:58. --*/
+
+/* markdown编辑器 */
+
+@mixin box() {
+  width: 45%;
+  height: 500px;
+  min-width: 350px;
+  overflow: auto;
+  border: 1px solid #ccc;
+}
+
+.markdown-editer {
+
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 5%;
+  .editer {
+    @include box();
+    margin-right: 6px;
+
+    & > textarea {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .content {
+    @include box();
+    padding: 5px 6px;
+  }
+}
