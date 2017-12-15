@@ -18,7 +18,12 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, './build'),
-        filename: 'js/bundle[hash].js',
+        filename: 'js/bundle.js',
+    },
+    devServer: {
+        contentBase: "./build",  //以public为根目录提供文件
+        historyApiFallback: true,
+        inline: true
     },
     module: {
         rules: [{
@@ -54,30 +59,30 @@ module.exports = {
             name: "react",
             // ( 公共chunk(commnons chunk) 的名称)
 
-            filename: "js/react[hash].js",
+            filename: "js/react.js",
             // ( 公共chunk 的文件名)
 
             minChunks: Infinity,
             // (模块必须被3个 入口chunk 共享)
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            output: {
-                comments: false,  // remove all comments
-            },
-            compress: {
-                warnings: false
-            }
-        }),
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify("production")
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     output: {
+        //         comments: false,  // remove all comments
+        //     },
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
+        // new webpack.DefinePlugin({
+        //     "process.env": {
+        //         NODE_ENV: JSON.stringify("production")
+        //     }
+        // }),
         new HtmlWebpackPlugin({
-            title:"Markdown Editer",
+            title:"测试页面",
             filename:"index.html",
             template:"./src/template/box.html",
-            hash:false,
+            hash:true,
             cache:true,
             minify:false
         })
